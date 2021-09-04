@@ -4,14 +4,16 @@
         <script src="index.js"></script>
      </head>
      <body>
-       <form id="Form" onsubmit="return false"><!--onsubmit-->
-            Firstname:<input class="inputs firstname" id="firstname" required/><br>
-            Lastname:<input class="inputs lastname" id="lastname" required/><br>
-            Age:<input class="inputs age" id="age" required/><br>
-            Address:<input class="inputs address" id="address" required/><br>
-            <button onclick="myFunction()">Add</button><!--add button-->
-            <button onclick="clrfrm()">Clear</button><!--clrfrm button-->
-      </form>
-        <ul id ="myUL"></ul>
+      <body onload="loadData()">
+        <form id="form1" onsubmit='return false'>
+          First Name:<input type='text' id='fname' required><br>
+          Last Name:<input type='text' id='lname' required><br>
+          Age:<input type='text' id='age' required><br>
+          Address:<input type='text' id='address' required><br>
+            <button onClick="add()">Add</button>
+          <button onClick='clrfrm()' value="Reset form">Clear
+          </button>
+        </form>
+        <ul id="list"></ul>
       </body>
 </html>
