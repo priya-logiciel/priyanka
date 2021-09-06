@@ -43,6 +43,9 @@ function loadData() {
       // <button onClick=editList("+ item.id +")>Edit</button><button onClick=deleteList("+ item.id +")>delete</button>
     let editbutton = document.createElement('button')
       editbutton.innerText = 'Edit';
+      editbutton.addEventListener("click", function () {
+        editList(item.id);
+      });
       // editbutton.setAttribute('onClick')
     divEle.appendChild(editbutton)
     newElement.appendChild(divEle);
@@ -90,6 +93,9 @@ const b = {};
     //<button onClick=editList()>Edit</button><button onClick=deleteList("+ b.id +")>delete</button>";
     let editbutton = document.createElement('button')
     editbutton.innerText = 'Edit';
+    editbutton.addEventListener("click", function () {
+      editList(b.id);
+    });
     // editbutton.setAttribute('onClick')
     divEle.appendChild(editbutton)
     newElement.appendChild(divEle);
@@ -105,32 +111,40 @@ const b = {};
      divEle.appendChild(deletebutton)
      newElement.appendChild(divEle);
      document.getElementById("list").appendChild(newElement);
-} 
-function deleteList(id) {
-  let index = value.findIndex((el) => el.id == id)
-  value.splice(index, 1)
-
-  var delList = document.getElementById("list");
-  delList.removeChild(delList.childNodes[index]);
-}
-
- function editList() {
-  var editlist = document.createElement("list");
-}
-function clrfrm() {
-  document.getElementById('form1').reset();
-}
-function validate() {
-  var fname = document.getElementById("fname");
-  var lname = document.getElementById("lname");
-  var age = document.getElementById("age");
-  var address = document.getElementById("address");
-  if (fname.value == "" || lname.value == "") {
-      alert("Input Field Empty.")
+  } 
+    function deleteList(id) {
+    let index = value.findIndex((el) => el.id == id)
+    value.splice(index, 1)
+    var delList = document.getElementById("list");
+    delList.removeChild(delList.childNodes[index]);
+    }
+    var selectedListItem = null;
+    function editList(id) {
+      let index = value.findIndex((el) => el.id == id);
+      document.getElementById("fname").value = value[index].fname;
+      document.getElementById("lname").value = value[index].lname;
+      document.getElementById("age").value = value[index].age;
+      document.getElementById("address").value = value[index].address
+    }
+    function updateName() {
+      var updaList = document.getElementById("list").value
+      updaList.replaceChild(updaList.childNodes[index]);
+      
   }
-  else if (age.value == "" || address.value == "") {
-      alert("Input Field Empty.")
-  }
-  else {
-  }
-}
+    function clrfrm() {
+    document.getElementById('form1').reset();
+    }
+    function validate() {
+    var fname = document.getElementById("fname");
+    var lname = document.getElementById("lname");
+    var age = document.getElementById("age");
+    var address = document.getElementById("address");
+    if (fname.value == "" || lname.value == "") {
+        alert("Input Field Empty.")
+    }
+    else if (age.value == "" || address.value == "") {
+        alert("Input Field Empty.")
+    }
+    else {
+    }
+    }
