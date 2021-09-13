@@ -5,14 +5,16 @@
      </head>
      <body>
       <body onload="loadData()">
-        <form id="form1" onsubmit='return false'>
+        <form id="form1" onsubmit="return validateForm ()"method="post" requried>
           First Name:<input type='text' id='fname' required><br>
           Last Name:<input type='text' id='lname' required><br>
           Age:<input type='text' id='age' required><br>
           Address:<input type='text' id='address' required><br>
-            <button onClick="add()">Add</button>
+          <button onClick="add()">Add</button>
           <button onClick='clrfrm()' value="Reset form">Clear
-          </button>
+          </button><br>
+          <input type="search" id="myInput">
+          <button onClick="Search()">Search</button>
         </form>
         <ul id="list"></ul>
       </body>
