@@ -1,21 +1,50 @@
 <html>
-      <head>
-        <title>javaScript</title>
-        <script src="index.js"></script>
-     </head>
-     <body>
-      <body onload="loadData()">
-        <form id="form1" onsubmit="return validateForm ()"method="post" requried>
-          First Name:<input type='text' id='fname' required><br>
-          Last Name:<input type='text' id='lname' required><br>
-          Age:<input type='text' id='age' required><br>
-          Address:<input type='text' id='address' required><br>
-          <button onClick="add()">Add</button>
-          <button onClick='clrfrm()' value="Reset form">Clear
-          </button><br>
-          <input type="search" id="myInput">
-          <button onClick="Search()">Search</button>
-        </form>
-        <ul id="list"></ul>
-      </body>
+  <head>
+    <title>javaScript</title>
+    <script src="index.js"></script>
+    <style>
+      a {
+        text-decoration: none;
+        display: inline-block;
+        padding: 8px 16px;
+      }
+
+      a:hover {
+        background-color: #ddd;
+        color: black;
+      }
+
+      .previous {
+        background-color: #04aa6d;
+        color: black;
+      }
+
+      .next {
+        background-color: #04aa6d;
+        color: white;
+      }
+
+      .round {
+        border-radius: 50%;
+      }
+    </style>
+  </head>
+  <body onload="loadData()">
+    <form id="form1" onsubmit="return false">
+      First Name:<input type="text" id="fname" /><br />
+      Last Name:<input type="text" id="lname" /><br />
+      Age:<input type="text" id="age" /><br />
+      Address:<input type="text" id="address" /><br />
+      <button onClick="validateForm()">Add</button>
+      <button onClick="clrfrm()" value="Reset form">Clear</button><br />
+      <input type="search" id="myInput" />
+      <button onClick="Search()">Search</button>
+    </form>
+    <ul id="list"></ul>
+    <a href="#" class="previous">&laquo; Previous</a>
+    <a href="#" class="next">Next &raquo;</a>
+
+    <a href="#" class="previous round">&#8249;</a>
+    <a href="#" class="next round">&#8250;</a>
+  </body>
 </html>

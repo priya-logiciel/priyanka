@@ -1,6 +1,4 @@
 var editId = null;
-var updateId = null;
-
 var value = [
   {
     address: "Metro",
@@ -56,33 +54,44 @@ function loadData() {
       deleteList(item.id);
     });
     deletebutton.setAttribute("onclick", "delete(" + item.id + ")");
-    divEle.appendChild(editbutton);
-    divEle.appendChild(deletebutton);
     newElement.appendChild(divEle);
+    newElement.appendChild(editbutton);
+    newElement.appendChild(deletebutton);
     document.getElementById("list").appendChild(newElement);
   });
 }
-var selectedList = null;
 function add() {
+  const b = {};
+  b["fname"] = document.getElementById("fname").value;
+  b["lname"] = document.getElementById("lname").value;
+  b["age"] = document.getElementById("age").value;
+  b["address"] = document.getElementById("address").value;
   if (editId) {
-    var newElement = document.createElement("li");
-    newElement.innerHTML = "fzhjfbzjd";
-    var index = document.getElementById("list");
+    let index = value.findIndex((el) => el.id == editId);
+    console.log(index);
+    value[index] = b;
+    value[index].id = editId;
+    document.getElementById("list").childNodes[index].childNodes[0].innerHTML =
+      "Firstname-" +
+      b.fname +
+      "<br>" +
+      "Lastname-" +
+      b.lname +
+      "<br>" +
+      "Age-" +
+      b.age +
+      "<br>" +
+      "Address-" +
+      b.address +
+      "<br>";
+    editId = null;
   } else {
-    const b = {};
-    b["fname"] = document.getElementById("fname").value;
-    b["lname"] = document.getElementById("lname").value;
-    b["age"] = document.getElementById("age").value;
-    b["address"] = document.getElementById("address").value;
-
-    console.log(b);
-
     b.id = value.length + 1;
     value.push(b);
     console.log(value);
     var newElement = document.createElement("li");
+    newElement.setAttribute("style", "border:1px solid");
     var divEle = document.createElement("div");
-    divEle.setAttribute("style", "border:1px solid");
     divEle.innerHTML =
       "Firstname-" +
       b.fname +
@@ -109,9 +118,9 @@ function add() {
       deleteList(b.id);
     });
     deletebutton.setAttribute("onclick", "delete(" + b.id + ")");
-    divEle.appendChild(editbutton);
-    divEle.appendChild(deletebutton);
     newElement.appendChild(divEle);
+    newElement.appendChild(editbutton);
+    newElement.appendChild(deletebutton);
     document.getElementById("list").appendChild(newElement);
   }
 
@@ -148,10 +157,15 @@ function validateForm() {
   var lname = document.getElementById("lname");
   var age = document.getElementById("age");
   var address = document.getElementById("address");
-  if (fname.value == "" || lname.value == "") {
-    alert("Input Field Empty.");
-  } else if (age.value == "" || address.value == "") {
-    alert("Input Field Empty.");
+  if (fname.value == "") {
+    alert("Input Field Firstname  Empty.");
+  } else if (lname.value == "") {
+    alert("Input Field Lastname Empty.");
+  } else if (age.value == "") {
+    alert("Input  Field Age Empty.");
+  } else if (address.value == "") {
+    alert("Input Field  Address Empty.");
   } else {
+    add();
   }
 }
