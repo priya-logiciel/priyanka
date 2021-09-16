@@ -2,31 +2,6 @@
   <head>
     <title>javaScript</title>
     <script src="index.js"></script>
-    <style>
-      a {
-        text-decoration: none;
-        display: inline-block;
-        padding: 8px 16px;
-      }
-
-      a:hover {
-        background-color: #ddd;
-        color: black;
-      }
-
-      .previous {
-        background-color: #04aa6d;
-        color: black;
-      }
-
-      .next {
-        background-color: #04aa6d;
-        color: white;
-      }
-
-      .round {
-        border-radius: 50%;
-      }
     </style>
   </head>
   <body onload="loadData()">
@@ -37,14 +12,14 @@
       Address:<input type="text" id="address" /><br />
       <button onClick="validateForm()">Add</button>
       <button onClick="clrfrm()" value="Reset form">Clear</button><br />
-      <input type="search" id="myInput" />
-      <button onClick="Search()">Search</button>
     </form>
+    <input type="text" id="myInput" />
+    <button onClick="Search()">Search</button>
     <ul id="list"></ul>
-    <a href="#" class="previous">&laquo; Previous</a>
-    <a href="#" class="next">Next &raquo;</a>
-
-    <a href="#" class="previous round">&#8249;</a>
-    <a href="#" class="next round">&#8250;</a>
+    <div id="listingTable"></div>
+    <a href="javascript:prevPage()" id="btn_prev">Prev</a>
+    <a href="javascript:nextPage()" id="btn_next">Next</a>
+    page: <span id="page"></span>
+    </div>  
   </body>
 </html>
