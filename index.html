@@ -2,24 +2,32 @@
   <head>
     <title>javaScript</title>
     <script src="index.js"></script>
-    </style>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body onload="loadData()">
-    <form id="form1" onsubmit="return false">
-      First Name:<input type="text" id="fname" /><br />
-      Last Name:<input type="text" id="lname" /><br />
-      Age:<input type="text" id="age" /><br />
-      Address:<input type="text" id="address" /><br />
-      <button onClick="validateForm()">Add</button>
-      <button onClick="clrfrm()" value="Reset form">Clear</button><br />
-    </form>
-    <input type="text" id="myInput" />
-    <button onClick="Search()">Search</button>
+    <div>
+      <form id="form1" onsubmit="return false">
+        <label for="fname">First Name</label>
+        <input type="text" id="fname" placeholder="Your name..." /><br />
+        <label for="lname">Last Name</label>
+        <input type="text" id="lname" placeholder="Your name..." /><br />
+        <label for="lname">Age</label>
+        <input type="text" id="age" placeholder="Your age..." /><br />
+        <label for="lname">Address</label>
+        <input type="text" id="address" placeholder="Your address..." /><br />
+        <button onClick="validateForm()">Add</button>
+        <button onClick="clrfrm()" value="Reset form">Clear</button><br />
+      </form>
+    </div>
+    <div class="search">
+      <button onClick="Search()">Search</button>
+      <input type="text" id="myInput" placeholder="Search.." />
+    </div>
     <ul id="list"></ul>
-    <div id="listingTable"></div>
-    <a href="javascript:prevPage()" id="btn_prev">Prev</a>
-    <a href="javascript:nextPage()" id="btn_next">Next</a>
-    page: <span id="page"></span>
-    </div>  
+    <div>
+      <button id="next" onclick="nextPage()">NEXT</button>
+      <span id="page"></span>
+      <button id="previous" onclick="previousPage()">PREVIOUS</button>
+    </div>
   </body>
 </html>

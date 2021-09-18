@@ -1,6 +1,6 @@
 var editId = null;
-var current_page = 1;
-var records_per_page = 3;
+var numberPerPage = 5;
+var currentPage = 1;
 var value = [
   {
     address: "Metro",
@@ -75,7 +75,12 @@ var value = [
 ];
 //load function
 function loadData() {
-  value.forEach((item) => {
+  var Listrender;
+  var begin = (currentPage - 1) * numberPerPage;
+  var end = begin + numberPerPage;
+  Listrender = value.slice(begin, end);
+  document.getElementById("list").innerHTML = null;
+  Listrender.forEach((item) => {
     var newElement = document.createElement("li");
     newElement.setAttribute("style", "border:1px solid");
     var divEle = document.createElement("div");
@@ -111,6 +116,7 @@ function loadData() {
     newElement.appendChild(deletebutton);
     document.getElementById("list").appendChild(newElement);
   });
+  check();
 }
 // add function
 function add() {
@@ -178,6 +184,7 @@ function add() {
   }
   //clear
   document.getElementById("form1").reset();
+  loadData();
 }
 //delate function
 function deleteList(id) {
@@ -236,58 +243,16 @@ function Search() {
   }
 }
 //pagination function
-function prevPage() {
-  if (current_page > 1) {
-    current_page--;
-    changePage(current_page);
-  }
-}
-
 function nextPage() {
-  if (current_page < numPages()) {
-    current_page++;
-    changePage(current_page);
-  }
+  currentPage += 1;
+  loadData();
 }
-
-function changePage(page) {
-  var btn_next = document.getElementById("btn_next");
-  var btn_prev = document.getElementById("btn_prev");
-  var listing_table = document.getElementById("listingTable");
-  var page_span = document.getElementById("page");
-
-  // Validate page
-  if (page < 1) page = 1;
-  if (page > numPages()) page = numPages();
-
-  listing_table.innerHTML = "";
-
-  for (
-    var i = (page - 1) * records_per_page;
-    i < page * records_per_page && i < value.length;
-    i++
-  ) {
-    listing_table.innerHTML += value[i].adName + "<br>";
-  }
-  page_span.innerHTML = page + "/" + numPages();
-
-  if (page == 1) {
-    btn_prev.style.visibility = "hidden";
-  } else {
-    btn_prev.style.visibility = "visible";
-  }
-
-  if (page == numPages()) {
-    btn_next.style.visibility = "hidden";
-  } else {
-    btn_next.style.visibility = "visible";
-  }
+function previousPage() {
+  currentPage -= 1;
+  loadData();
 }
-
-function numPages() {
-  return Math.ceil(value.length / records_per_page);
+function check() {
+  document.getElementById("previous").disabled =
+    currentPage == 1 ? true : false;
+  document.getElementById("next").disabled = currentPage == 10 ? true : false;
 }
-
-window.onload = function () {
-  changePage(1);
-};
