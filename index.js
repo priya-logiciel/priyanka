@@ -116,6 +116,8 @@ function loadData() {
     newElement.appendChild(deletebutton);
     document.getElementById("list").appendChild(newElement);
   });
+  document.getElementById("currentPage").innerText =
+    "currentPage=" + currentPage;
   check();
 }
 // add function
@@ -130,6 +132,7 @@ function add() {
     console.log(index);
     value[index] = b;
     value[index].id = editId;
+    editId = null;
     loadData();
   } else {
     b.id = value.length + 1;
