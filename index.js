@@ -130,67 +130,58 @@ function add() {
     console.log(index);
     value[index] = b;
     value[index].id = editId;
-    document.getElementById("list").childNodes[index].childNodes[0].innerHTML =
-      "Firstname-" +
-      b.fname +
-      "<br>" +
-      "Lastname-" +
-      b.lname +
-      "<br>" +
-      "Age-" +
-      b.age +
-      "<br>" +
-      "Address-" +
-      b.address +
-      "<br>";
-    editId = null;
+    loadData();
   } else {
     b.id = value.length + 1;
     value.push(b);
     console.log(value);
-    var newElement = document.createElement("li");
-    newElement.setAttribute("style", "border:1px solid");
-    var divEle = document.createElement("div");
-    divEle.innerHTML =
-      "Firstname-" +
-      b.fname +
-      "<br>" +
-      "Lastname-" +
-      b.lname +
-      "<br>" +
-      "Age-" +
-      b.age +
-      "<br>" +
-      "Address-" +
-      b.address +
-      "<br>";
-    //edit button
-    let editbutton = document.createElement("button");
-    editbutton.innerText = "Edit";
-    editbutton.addEventListener("click", function () {
-      editList(b.id);
-    });
-    //delete button
-    let deletebutton = document.createElement("button");
-    deletebutton.innerText = "Delete";
-    deletebutton.addEventListener("click", function () {
-      deleteList(b.id);
-    });
-    deletebutton.setAttribute("onclick", "delete(" + b.id + ")");
-    newElement.appendChild(divEle);
-    newElement.appendChild(editbutton);
-    newElement.appendChild(deletebutton);
-    document.getElementById("list").appendChild(newElement);
+    if (numberPerPage * currentPage >= value.length) {
+      var newElement = document.createElement("li");
+      newElement.setAttribute("style", "border:1px solid");
+      var divEle = document.createElement("div");
+      divEle.innerHTML =
+        "Firstname-" +
+        b.fname +
+        "<br>" +
+        "Lastname-" +
+        b.lname +
+        "<br>" +
+        "Age-" +
+        b.age +
+        "<br>" +
+        "Address-" +
+        b.address +
+        "<br>";
+      //edit button
+      let editbutton = document.createElement("button");
+      editbutton.innerText = "Edit";
+      editbutton.addEventListener("click", function () {
+        editList(b.id);
+      });
+      //delete button
+      let deletebutton = document.createElement("button");
+      deletebutton.innerText = "Delete";
+      deletebutton.addEventListener("click", function () {
+        deleteList(b.id);
+      });
+      deletebutton.setAttribute("onclick", "delete(" + b.id + ")");
+      newElement.appendChild(divEle);
+      newElement.appendChild(editbutton);
+      newElement.appendChild(deletebutton);
+      document.getElementById("list").appendChild(newElement);
+    }
   }
   //clear
+  check();
   document.getElementById("form1").reset();
 }
 //delate function
 function deleteList(id) {
   let index = value.findIndex((el) => el.id == id);
   value.splice(index, 1);
-  var delList = document.getElementById("list");
-  delList.removeChild(delList.childNodes[index]);
+  loadData();
+  //var delList = document.getElementById("list");
+  //delList.removeChild(delList.childNodes[index]);
 }
 //edit function
 var selectedListItem = null;
@@ -253,5 +244,6 @@ function previousPage() {
 function check() {
   document.getElementById("previous").disabled =
     currentPage == 1 ? true : false;
-  document.getElementById("next").disabled = currentPage == 3 ? true : false;
+  document.getElementById("next").disabled =
+    numberPerPage * currentPage < value.length ? false : true;
 }
