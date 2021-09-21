@@ -27,49 +27,49 @@ var value = [
     address: "Metro",
     age: "19",
     fname: "priyanka",
-    id: 1,
+    id: 4,
     lname: "Kumari",
   },
   {
     address: "Jasiya",
     age: "24",
     fname: "geeta",
-    id: 2,
+    id: 5,
     lname: "Kumari",
   },
   {
     address: "Tajpur",
     age: "25",
     fname: "Ronit",
-    id: 3,
+    id: 6,
     lname: "kumar",
   },
   {
     address: "Metro",
-    age: "24",
-    fname: "Priyu",
-    id: 1,
-    lname: "Kumari",
+    age: "22",
+    fname: "Priyanka",
+    id: 7,
+    lname: "yadav",
   },
   {
     address: "Jasiya",
     age: "25",
     fname: "Shiva",
-    id: 2,
+    id: 8,
     lname: "Kumar",
   },
   {
     address: "Tajpur",
     age: "26",
     fname: "Rinku",
-    id: 3,
+    id: 9,
     lname: "kumar",
   },
   {
     address: "Tajpur",
     age: "27",
     fname: "Rohan",
-    id: 3,
+    id: 10,
     lname: "kumar",
   },
 ];
@@ -192,6 +192,7 @@ function editList(id) {
   document.getElementById("age").value = value[index].age;
   document.getElementById("address").value = value[index].address;
   editId = id;
+  loadData();
 }
 // clear function
 function clrfrm() {
