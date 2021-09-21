@@ -184,7 +184,6 @@ function add() {
   }
   //clear
   document.getElementById("form1").reset();
-  loadData();
 }
 //delate function
 function deleteList(id) {
@@ -254,5 +253,5 @@ function previousPage() {
 function check() {
   document.getElementById("previous").disabled =
     currentPage == 1 ? true : false;
-  document.getElementById("next").disabled = currentPage == 10 ? true : false;
+  document.getElementById("next").disabled = currentPage == 3 ? true : false;
 }
